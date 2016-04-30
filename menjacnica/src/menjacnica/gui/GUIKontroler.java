@@ -1,21 +1,24 @@
 package menjacnica.gui;
 
 import java.awt.EventQueue;
+import java.util.List;
 
 import javax.swing.JOptionPane;
 
+import menjacnica.Menjacnica;
 import menjacnica.Valuta;
 import menjacnica.interfejs.MenjacnicaInterfejs;
 
 public class GUIKontroler {
 
 	private static MenjacnicaGUI glavniProzor;
-	private static MenjacnicaInterfejs biblioteka;
+	private static MenjacnicaInterfejs sistem;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
+					sistem = new Menjacnica();
 					glavniProzor = new MenjacnicaGUI();
 					glavniProzor.setVisible(true);
 				} catch (Exception e) {
@@ -54,6 +57,49 @@ public class GUIKontroler {
 
 		if (opcija == JOptionPane.YES_OPTION)
 			System.exit(0);
+	}
+
+	public static void unesiKurs(String naziv, String skraceniNaziv, Integer sifra, String prodajniKurs,
+			String kupovniKurs, String srednjiKurs) {
+		try {
+			Valuta valuta = new Valuta();
+
+			valuta.setNaziv(naziv);
+			valuta.setSkraceniNaziv(skraceniNaziv);
+			valuta.setSifra(sifra);
+			valuta.setProdajni(Double.parseDouble(prodajniKurs));
+			valuta.setKupovni(Double.parseDouble(kupovniKurs));
+			valuta.setSrednji(Double.parseDouble(srednjiKurs));
+
+			// Dodavanje valute u kursnu listu
+			sistem.dodajValutu(valuta);
+
+			// Osvezavanje glavnog prozora
+			glavniProzor.prikaziSveValute();
+
+		} catch (Exception e1) {
+			JOptionPane.showMessageDialog(glavniProzor, e1.getMessage(), "Greska", JOptionPane.ERROR_MESSAGE);
+		}
+
+	}
+
+	public static void obrisiValutu(Valuta v) {
+		try {
+			sistem.obrisiValutu(v);
+
+			glavniProzor.prikaziSveValute();
+
+		} catch (Exception e1) {
+			JOptionPane.showMessageDialog(glavniProzor, e1.getMessage(), "Greska", JOptionPane.ERROR_MESSAGE);
+		}
+	}
+
+	public static double izvrsiTransakciju(Valuta v, boolean prodaja, String iznos) {
+		return sistem.izvrsiTransakciju(v, prodaja, Double.parseDouble(iznos));
+	}
+
+	public static List<Valuta> vratiKursnuListu() {
+		return sistem.vratiKursnuListu();
 	}
 
 }

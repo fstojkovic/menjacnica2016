@@ -272,7 +272,7 @@ public class MenjacnicaGUI extends JFrame {
 
 	protected void prikaziSveValute() {
 		MenjacnicaTableModel model = (MenjacnicaTableModel) (table.getModel());
-		model.staviSveValuteUModel(sistem.vratiKursnuListu());
+		model.staviSveValuteUModel(GUIKontroler.vratiKursnuListu());
 
 	}
 
