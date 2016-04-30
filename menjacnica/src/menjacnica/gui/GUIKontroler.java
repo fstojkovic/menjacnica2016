@@ -1,8 +1,10 @@
 package menjacnica.gui;
 
 import java.awt.EventQueue;
+import java.io.File;
 import java.util.List;
 
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
 import menjacnica.Menjacnica;
@@ -100,6 +102,36 @@ public class GUIKontroler {
 
 	public static List<Valuta> vratiKursnuListu() {
 		return sistem.vratiKursnuListu();
+	}
+
+	public static void sacuvajUFajl() {
+		try {
+			JFileChooser fc = new JFileChooser();
+			int returnVal = fc.showSaveDialog(glavniProzor);
+
+			if (returnVal == JFileChooser.APPROVE_OPTION) {
+				File file = fc.getSelectedFile();
+
+				sistem.sacuvajUFajl(file.getAbsolutePath());
+			}
+		} catch (Exception e1) {
+			JOptionPane.showMessageDialog(glavniProzor, e1.getMessage(), "Greska", JOptionPane.ERROR_MESSAGE);
+		}
+	}
+
+	public static void ucitajIzFajla() {
+		try {
+			JFileChooser fc = new JFileChooser();
+			int returnVal = fc.showOpenDialog(glavniProzor);
+
+			if (returnVal == JFileChooser.APPROVE_OPTION) {
+				File file = fc.getSelectedFile();
+				sistem.ucitajIzFajla(file.getAbsolutePath());
+				glavniProzor.prikaziSveValute();
+			}
+		} catch (Exception e1) {
+			JOptionPane.showMessageDialog(glavniProzor, e1.getMessage(), "Greska", JOptionPane.ERROR_MESSAGE);
+		}
 	}
 
 }
