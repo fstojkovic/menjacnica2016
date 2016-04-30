@@ -237,9 +237,6 @@ public class MenjacnicaGUI extends JFrame {
 		return mntmAbout;
 	}
 
-	private static void addPopup(Component component, final JPopupMenu popup) {
-	}
-
 	protected void prikaziSveValute() {
 		MenjacnicaTableModel model = (MenjacnicaTableModel) (table.getModel());
 		model.staviSveValuteUModel(GUIKontroler.vratiKursnuListu());

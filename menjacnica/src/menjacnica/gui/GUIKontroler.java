@@ -49,8 +49,8 @@ public class GUIKontroler {
 	}
 
 	public static void prikaziAboutProzor() {
-		JOptionPane.showMessageDialog(glavniProzor, "Autor: Bojan Tomic, Verzija 1.0", "O programu Menjacnica",
-				JOptionPane.INFORMATION_MESSAGE);
+		JOptionPane.showMessageDialog(glavniProzor, "Autors: Bojan Tomic & Filip Stojkovic, Verzija 1.0",
+				"O programu Menjacnica", JOptionPane.INFORMATION_MESSAGE);
 	}
 
 	public static void ugasiAplikaciju() {
@@ -61,8 +61,8 @@ public class GUIKontroler {
 			System.exit(0);
 	}
 
-	public static void unesiKurs(String naziv, String skraceniNaziv, Integer sifra, String prodajniKurs,
-			String kupovniKurs, String srednjiKurs) {
+	public static void unesiKurs(String naziv, String skraceniNaziv, Integer sifra, String kupovniKurs,
+			String srednjiKurs, String prodajniKurs) {
 		try {
 			Valuta valuta = new Valuta();
 
