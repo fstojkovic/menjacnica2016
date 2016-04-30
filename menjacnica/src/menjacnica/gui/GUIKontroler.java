@@ -4,6 +4,7 @@ import java.awt.EventQueue;
 
 import javax.swing.JOptionPane;
 
+import menjacnica.Valuta;
 import menjacnica.interfejs.MenjacnicaInterfejs;
 
 public class GUIKontroler {
@@ -26,6 +27,18 @@ public class GUIKontroler {
 
 	public static void prikaziDodajKursGUI() {
 		DodajKursGUI prozor = new DodajKursGUI(glavniProzor);
+		prozor.setLocationRelativeTo(glavniProzor);
+		prozor.setVisible(true);
+	}
+
+	public static void prikaziObrisiKurs(Valuta v) {
+		ObrisiKursGUI prozor = new ObrisiKursGUI(glavniProzor, v);
+		prozor.setLocationRelativeTo(glavniProzor);
+		prozor.setVisible(true);
+	}
+
+	public static void prikaziIzvrsiZamenu(Valuta v) {
+		IzvrsiZamenuGUI prozor = new IzvrsiZamenuGUI(glavniProzor, v);
 		prozor.setLocationRelativeTo(glavniProzor);
 		prozor.setVisible(true);
 	}

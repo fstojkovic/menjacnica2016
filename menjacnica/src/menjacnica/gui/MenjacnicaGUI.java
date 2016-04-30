@@ -124,7 +124,11 @@ public class MenjacnicaGUI extends JFrame {
 			btnObrisiKurs = new JButton("Obrisi kurs");
 			btnObrisiKurs.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					prikaziObrisiKursGUI();// ----------
+					if (table.getSelectedRow() != -1) {
+						MenjacnicaTableModel model = (MenjacnicaTableModel) (table.getModel());
+						GUIKontroler.prikaziObrisiKurs(model.vratiValutu(table.getSelectedRow()));
+					}
+
 				}
 			});
 			btnObrisiKurs.setPreferredSize(new Dimension(140, 25));
@@ -137,7 +141,12 @@ public class MenjacnicaGUI extends JFrame {
 			btnIzvrsiZamenu = new JButton("Izvrsi zamenu");
 			btnIzvrsiZamenu.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					prikaziIzvrsiZamenuGUI(); // ---------------
+
+					if (table.getSelectedRow() != -1) {
+						MenjacnicaTableModel model = (MenjacnicaTableModel) (table.getModel());
+						GUIKontroler.prikaziIzvrsiZamenu(model.vratiValutu(table.getSelectedRow()));
+					}
+
 				}
 			});
 			btnIzvrsiZamenu.setPreferredSize(new Dimension(140, 25));
@@ -265,27 +274,6 @@ public class MenjacnicaGUI extends JFrame {
 		MenjacnicaTableModel model = (MenjacnicaTableModel) (table.getModel());
 		model.staviSveValuteUModel(sistem.vratiKursnuListu());
 
-	}
-
-	
-
-	private void prikaziObrisiKursGUI() {
-
-		if (table.getSelectedRow() != -1) {
-			MenjacnicaTableModel model = (MenjacnicaTableModel) (table.getModel());
-			ObrisiKursGUI prozor = new ObrisiKursGUI(this, model.vratiValutu(table.getSelectedRow()));
-			prozor.setLocationRelativeTo(contentPane);
-			prozor.setVisible(true);
-		}
-	}
-
-	private void prikaziIzvrsiZamenuGUI() {
-		if (table.getSelectedRow() != -1) {
-			MenjacnicaTableModel model = (MenjacnicaTableModel) (table.getModel());
-			IzvrsiZamenuGUI prozor = new IzvrsiZamenuGUI(this, model.vratiValutu(table.getSelectedRow()));
-			prozor.setLocationRelativeTo(contentPane);
-			prozor.setVisible(true);
-		}
 	}
 
 	private JTable getTable() {
