@@ -6,15 +6,18 @@ import java.util.List;
 
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 
 import menjacnica.Menjacnica;
 import menjacnica.Valuta;
+import menjacnica.gui.models.MenjacnicaTableModel;
 import menjacnica.interfejs.MenjacnicaInterfejs;
 
 public class GUIKontroler {
 
 	private static MenjacnicaGUI glavniProzor;
 	private static MenjacnicaInterfejs sistem;
+
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -31,19 +34,19 @@ public class GUIKontroler {
 	}
 
 	public static void prikaziDodajKursGUI() {
-		DodajKursGUI prozor = new DodajKursGUI(glavniProzor);
+		DodajKursGUI prozor = new DodajKursGUI();
 		prozor.setLocationRelativeTo(glavniProzor);
 		prozor.setVisible(true);
 	}
 
 	public static void prikaziObrisiKurs(Valuta v) {
-		ObrisiKursGUI prozor = new ObrisiKursGUI(glavniProzor, v);
+		ObrisiKursGUI prozor = new ObrisiKursGUI(v);
 		prozor.setLocationRelativeTo(glavniProzor);
 		prozor.setVisible(true);
 	}
 
 	public static void prikaziIzvrsiZamenu(Valuta v) {
-		IzvrsiZamenuGUI prozor = new IzvrsiZamenuGUI(glavniProzor, v);
+		IzvrsiZamenuGUI prozor = new IzvrsiZamenuGUI(v);
 		prozor.setLocationRelativeTo(glavniProzor);
 		prozor.setVisible(true);
 	}
@@ -133,5 +136,7 @@ public class GUIKontroler {
 			JOptionPane.showMessageDialog(glavniProzor, e1.getMessage(), "Greska", JOptionPane.ERROR_MESSAGE);
 		}
 	}
-
+	
 }
+
+
